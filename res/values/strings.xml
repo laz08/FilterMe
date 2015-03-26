@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string name="app_name">FilterMe</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_edita_foto">EditaFoto</string>
+    <string name="filters">filters</string>
+
+    <!-- ### COLORS ####  -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="garnet">#EFADAD</color>
+    <color name="gray">#E3E3E3</color>
+    <string name="title_activity_about">About</string>
+
+    <string name="hello_world">Hello world!</string>
+
+
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+</resources>
