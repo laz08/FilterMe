@@ -10,37 +10,6 @@
     android:background="@drawable/bg_app"
     android:nestedScrollingEnabled="false">
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageButton"
-        android:src="@drawable/pic_04"
-        android:onClick="opGalleryAndToast"
-        android:clickable="false"
-        android:background="@null"
-        android:layout_marginTop="380dp"
-        android:layout_marginLeft="200dp"
-        android:maxHeight="200px"
-        android:maxWidth="250px"
-        android:scaleType="centerInside"
-        android:adjustViewBounds="true"
-       />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/cameraButton"
-        android:src="@drawable/camara_01"
-        android:onClick="takePhotoAndToast"
-        android:clickable="false"
-        android:background="@null"
-        android:layout_marginTop="380dp"
-        android:layout_marginLeft="60dp"
-        android:maxHeight="200px"
-        android:maxWidth="250px"
-        android:scaleType="centerInside"
-        android:adjustViewBounds="true"
-         />
 
 
     <ImageButton
@@ -76,6 +45,53 @@
         android:id="@+id/me"
         android:textColor="@color/black"
         android:layout_centerVertical="true"
-        android:layout_alignStart="@+id/imageButton" />
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="168dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:weightSum="2"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/me">
+
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cameraButton"
+            android:src="@drawable/camara_01"
+            android:onClick="takePhotoAndToast"
+            android:clickable="false"
+            android:background="@null"
+            android:maxHeight="200px"
+            android:maxWidth="250px"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageButton"
+            android:src="@drawable/pic_04"
+            android:onClick="opGalleryAndToast"
+            android:clickable="false"
+            android:background="@null"
+            android:maxHeight="200px"
+            android:maxWidth="250px"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            />
+
+
+    </LinearLayout>
 
 </RelativeLayout>

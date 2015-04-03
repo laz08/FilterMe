@@ -2,7 +2,6 @@ package dev.filterme;
 
 import java.util.Locale;
 
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -20,7 +19,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 
-public class About extends FragmentActivity implements ActionBar.TabListener {
+public class About extends ActionBarActivity implements ActionBar.TabListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -182,6 +181,22 @@ public class About extends FragmentActivity implements ActionBar.TabListener {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_about, container, false);
+            TextView display = (TextView) rootView.findViewById(R.id.info);
+            int position = getArguments().getInt(ARG_SECTION_NUMBER);
+            switch (position){
+                case 1:
+                    display.setText(String.format(getString(R.string.application)));
+                    break;
+                case 2:
+                    display.setText(String.format(getString(R.string.author)));
+                    break;
+                case 3:
+                    display.setText(String.format(getString(R.string.license)));
+                    break;
+                default:
+                    display.setText("Bug xuli");
+                    break;
+            }
             return rootView;
         }
     }

@@ -3,15 +3,12 @@ package dev.filterme;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -41,7 +38,7 @@ public class MainActivity extends Activity {
 
     public void opGalleryAndToast(View view){
         //Open Gallery and show toast
-        Toast.makeText(getApplicationContext(), "Opening gallery...", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), getString(R.string.gallery_op), Toast.LENGTH_SHORT).show();
         carregarImatge();
     }
 
@@ -53,13 +50,13 @@ public class MainActivity extends Activity {
     }
 
     public void takePhotoAndToast(View view){
-        Toast.makeText(getApplicationContext(), "Opening camera...", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), getString(R.string.camera_op), Toast.LENGTH_SHORT).show();
         Intent pic = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (pic.resolveActivity(getPackageManager()) != null) {
             try {
                 file = createImageFile();
             } catch (Exception e){
-                Toast.makeText(getApplicationContext(), "Couldn't create new file...", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.no_file_created), Toast.LENGTH_LONG).show();
             }
             if(file != null){
                 newImgPath = Uri.fromFile(file);
@@ -69,7 +66,7 @@ public class MainActivity extends Activity {
         }
     }
 
-    public void goToAbout(){
+    public void goToAbout(View view){
         Intent ab = new Intent(this, About.class);
         startActivity(ab);
     }
@@ -115,7 +112,7 @@ public class MainActivity extends Activity {
             if (requestCode == IMATGE_CODI && resultCode == RESULT_OK && data != null) {
                 Uri selectedImage = data.getData();
                 uriToStringOnImgDecodable(selectedImage);
-                Toast.makeText(this, "Picture loaded!", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, getString(R.string.pic_Loaded), Toast.LENGTH_LONG).show();
                 Intent i = new Intent(this, EditaFoto.class);
                 i.putExtra("foto", imgDecodableString);
                 startActivity(i);
@@ -123,7 +120,8 @@ public class MainActivity extends Activity {
             //Image picked from camera
             else if(requestCode == REQUEST_IMAGE_TAKE_PHOTO && resultCode == RESULT_OK){
                 if(newImgPath != null) {
-                    Toast.makeText(this, newImgPath.getEncodedPath(), Toast.LENGTH_LONG).show();
+                    //Toast.makeText(this, newImgPath.getEncodedPath(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, getString(R.string.pic_Loaded), Toast.LENGTH_LONG).show();
                     //uriToStringOnImgDecodable(newImgPath);
                     imgDecodableString = uriToPath(newImgPath);
                 }
@@ -133,12 +131,12 @@ public class MainActivity extends Activity {
 
             }
             else {
-                Toast.makeText(this, "You have to select a picture.", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, getString(R.string.pic_not_selected), Toast.LENGTH_LONG).show();
             }
         } catch (Exception e) {
 
-            // Toast.makeText(this, "Oops, something went wrong...", Toast.LENGTH_LONG).show();
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.pic_error_loading), Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
 }
