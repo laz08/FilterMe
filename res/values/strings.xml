@@ -22,7 +22,9 @@
     
     <!-- ### INFO TO DISPLAY ON ABOUT -->
     <string name="application">Version 1.0</string>
-    <string name="author">Laura Cebollero</string>
+    <string name="author">Laura Cebollero Ruiz</string>
+    <string name="contact_me"> <b>Contact me at:</b></string>
+    <string name="author_mail">lazeru08@gmail.com</string>
     <string name="license">GNU license</string>
 
     <!-- ### TOASTS ### -->

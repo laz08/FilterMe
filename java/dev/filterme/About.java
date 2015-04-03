@@ -80,10 +80,11 @@ public class About extends ActionBarActivity implements ActionBar.TabListener {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_about, menu);
+        //getMenuInflater().inflate(R.menu.menu_about, menu);
         return true;
     }
 
+    /*
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -98,6 +99,7 @@ public class About extends ActionBarActivity implements ActionBar.TabListener {
 
         return super.onOptionsItemSelected(item);
     }
+    */
 
     @Override
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
@@ -188,7 +190,8 @@ public class About extends ActionBarActivity implements ActionBar.TabListener {
                     display.setText(String.format(getString(R.string.application)));
                     break;
                 case 2:
-                    display.setText(String.format(getString(R.string.author)));
+                    display.setText(getText(R.string.author) + "\n" + getText(R.string.contact_me));
+                    //display.setText(String.format(getString(R.string.author)) + "\n" + getString(R.string.contact_me));
                     break;
                 case 3:
                     display.setText(String.format(getString(R.string.license)));

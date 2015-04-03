@@ -122,7 +122,6 @@ public class MainActivity extends Activity {
                 if(newImgPath != null) {
                     //Toast.makeText(this, newImgPath.getEncodedPath(), Toast.LENGTH_LONG).show();
                     Toast.makeText(this, getString(R.string.pic_Loaded), Toast.LENGTH_LONG).show();
-                    //uriToStringOnImgDecodable(newImgPath);
                     imgDecodableString = uriToPath(newImgPath);
                 }
                 Intent i = new Intent(this, EditaFoto.class);
