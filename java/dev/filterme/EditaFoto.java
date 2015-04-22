@@ -1,44 +1,70 @@
 package dev.filterme;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.os.Build;
 import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class EditaFoto extends ActionBarActivity {
 
+    private Bitmap bmp;
+    private Bitmap r;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edita_foto);
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
-                    .commit();
-        }
-
         Intent i = getIntent();
         String foto = i.getStringExtra("foto");
         ImageView show = (ImageView) findViewById(R.id.foto);
-        show.setImageBitmap(BitmapFactory.decodeFile(foto));
+        bmp = BitmapFactory.decodeFile(foto);
+        show.setImageBitmap(bmp);
+        /*
+        String text = "H = " + Integer.toString(bmp.getHeight()) + " \n W = " + Integer.toString(bmp.getWidth());
+        Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG).show();
+        */
     }
 
 
+    public void aplicaFiltreBlur(View view){
+        Blur m = new Blur(bmp);
+        r = m.aplicaFiltre();
+        ImageView show = (ImageView) findViewById(R.id.foto);
+        show.setImageBitmap(r);
+    }
+
+
+    public void aplicaFiltreSharpen(View view){
+        Sharpen m = new Sharpen(bmp);
+        r = m.aplicaFiltre();
+        ImageView show = (ImageView) findViewById(R.id.foto);
+        show.setImageBitmap(r);
+    }
+    public void aplicaFiltreEmboss(View view){
+        Emboss m = new Emboss(bmp);
+        r = m.aplicaFiltre();
+        ImageView show = (ImageView) findViewById(R.id.foto);
+        show.setImageBitmap(r);
+    }
+    public void aplicaFiltreEdgeDetection(View view){
+        EdgeDetection m = new EdgeDetection(bmp);
+        r = m.aplicaFiltre();
+        ImageView show = (ImageView) findViewById(R.id.foto);
+        show.setImageBitmap(r);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        //TODO Opció "Guardar" i "Aplicar". En donar-li a "Aplicar", apliquem el filtre a la foto. Podem desfer un sol cop.
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_edita_foto, menu);
+        //getMenuInflater().inflate(R.menu.menu_edita_foto, menu);
         return true;
     }
 
@@ -57,21 +83,5 @@ public class EditaFoto extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
 
-        public PlaceholderFragment() {
-        }
-
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.llista_filtres, container, false);
-            return rootView;
-        }
-
-    }
 }

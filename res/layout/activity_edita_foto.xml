@@ -1,15 +1,109 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="dev.filterme.EditaFoto"
-    tools:ignore="MergeRootFrame">
+    android:weightSum="12"
+    android:orientation="vertical"
+    >
 
-<ImageView
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:id="@+id/foto" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10px"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/foto"
+        android:layout_weight="11" />
 
 
-</FrameLayout>
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="220px"
+        android:layout_marginBottom="10px">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="220px"
+        android:layout_gravity="left"
+        android:minHeight="220px"
+        android:minWidth="720px"
+        android:layout_marginBottom="10px"
+        android:isScrollContainer="true">
+
+                <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
+                android:maxHeight="210px"
+                android:id="@+id/filter1"
+                android:src="@drawable/lin1"
+                android:onClick="aplicaFiltreBlur"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:maxHeight="250px"
+            android:id="@+id/filter2"
+            android:src="@drawable/lin2"
+            android:onClick="aplicaFiltreSharpen"/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:maxHeight="250px"
+            android:id="@+id/filter3"
+            android:src="@drawable/lin3"
+            android:onClick="aplicaFiltreEmboss"
+            />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:maxHeight="250px"
+            android:id="@+id/filter4"
+            android:src="@drawable/lin4"
+            android:onClick="aplicaFiltreEdgeDetection"
+            />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:maxHeight="250px"
+            android:id="@+id/filter5"
+            android:src="@drawable/lin5"/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:maxHeight="250px"
+            android:id="@+id/filter6"
+            android:src="@drawable/lin6"/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:maxHeight="250px"
+            android:id="@+id/filter7"
+            android:src="@drawable/lin7"/>
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+</LinearLayout>
