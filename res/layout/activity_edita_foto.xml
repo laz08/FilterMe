@@ -7,6 +7,7 @@
     tools:context="dev.filterme.EditaFoto"
     android:weightSum="12"
     android:orientation="vertical"
+    android:background="@drawable/bg_app"
     >
 
     <ImageView
@@ -15,93 +16,230 @@
         android:layout_marginTop="10px"
         android:layout_gravity="center_horizontal"
         android:id="@+id/foto"
+        android:minHeight="600px"
+        android:minWidth="600px"
+        android:maxWidth="600px"
+        android:maxHeight="600px"
         android:layout_weight="11" />
 
 
     <HorizontalScrollView
         android:layout_width="wrap_content"
-        android:layout_height="220px"
-        android:layout_marginBottom="10px">
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="220px"
-        android:layout_gravity="left"
-        android:minHeight="220px"
-        android:minWidth="720px"
-        android:layout_marginBottom="10px"
-        android:isScrollContainer="true">
+        android:layout_height="200px"
+        android:layout_marginBottom="0px"
+        >
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="200px"
+            android:layout_gravity="left"
+            android:minHeight="200px"
+            android:minWidth="720px"
+            android:layout_marginBottom="0px"
+            android:isScrollContainer="true"
 
-                <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            >
+
+
+
+            <ImageButton
+                android:layout_width="76dp"
+                android:layout_height="76dp"
                 android:layout_gravity="center"
                 android:adjustViewBounds="true"
                 android:scaleType="centerInside"
-                android:maxHeight="210px"
+                android:maxHeight="200px"
                 android:id="@+id/filter1"
-                android:src="@drawable/lin1"
-                android:onClick="aplicaFiltreBlur"/>
+                android:src="@drawable/blur"
+                android:onClick="aplicaFiltreBlur"
+                android:clickable="false"
+                android:longClickable="false"
+                android:background="@null"
+                />
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:adjustViewBounds="true"
-            android:scaleType="centerInside"
-            android:maxHeight="250px"
-            android:id="@+id/filter2"
-            android:src="@drawable/lin2"
-            android:onClick="aplicaFiltreSharpen"/>
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:adjustViewBounds="true"
-            android:scaleType="centerInside"
-            android:maxHeight="250px"
-            android:id="@+id/filter3"
-            android:src="@drawable/lin3"
-            android:onClick="aplicaFiltreEmboss"
-            />
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:adjustViewBounds="true"
-            android:scaleType="centerInside"
-            android:maxHeight="250px"
-            android:id="@+id/filter4"
-            android:src="@drawable/lin4"
-            android:onClick="aplicaFiltreEdgeDetection"
-            />
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:adjustViewBounds="true"
-            android:scaleType="centerInside"
-            android:maxHeight="250px"
-            android:id="@+id/filter5"
-            android:src="@drawable/lin5"/>
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:adjustViewBounds="true"
-            android:scaleType="centerInside"
-            android:maxHeight="250px"
-            android:id="@+id/filter6"
-            android:src="@drawable/lin6"/>
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:adjustViewBounds="true"
-            android:scaleType="centerInside"
-            android:maxHeight="250px"
-            android:id="@+id/filter7"
-            android:src="@drawable/lin7"/>
+            <ImageButton
+                android:layout_width="76dp"
+                android:layout_height="76dp"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
+                android:maxHeight="200px"
+                android:id="@+id/filter2"
+                android:src="@drawable/sharp"
+                android:onClick="aplicaFiltreSharpen"
+                android:clickable="false"
+                android:longClickable="false"
+                android:background="@null" />
+            <ImageButton
+                android:layout_width="76dp"
+                android:layout_height="76dp"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
+                android:maxHeight="200px"
+                android:id="@+id/filter3"
+                android:src="@drawable/findedg"
+                android:onClick="aplicaFiltreEmboss"
+                android:clickable="false"
+                android:longClickable="false"
+                android:background="@null"
+                />
+            <ImageButton
+                android:layout_width="76dp"
+                android:layout_height="76dp"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
+                android:maxHeight="200px"
+                android:id="@+id/filter4"
+                android:src="@drawable/emboss"
+                android:onClick="aplicaFiltreEdgeDetection"
+                android:clickable="false"
+                android:longClickable="false"
+                android:background="@null"
+                />
+
+            <ImageButton
+                android:layout_width="76dp"
+                android:layout_height="76dp"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
+                android:maxHeight="200px"
+                android:id="@+id/filter6"
+                android:src="@drawable/edgdet"
+                android:onClick="aplicaFiltreFindEdges"
+                android:clickable="false"
+                android:longClickable="false"
+                android:background="@null"
+                />
+            <ImageButton
+                android:layout_width="76dp"
+                android:layout_height="76dp"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
+                android:maxHeight="200px"
+                android:id="@+id/filter7"
+                android:src="@drawable/sculpt"
+                android:onClick="aplicaFiltreEdges"
+                android:clickable="false"
+                android:longClickable="false"
+                android:background="@null"/>
+            <ImageButton
+                android:layout_width="76dp"
+                android:layout_height="76dp"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
+                android:maxHeight="200px"
+                android:id="@+id/filter5"
+                android:src="@drawable/motionb"
+                android:onClick="aplicaGrayScale"
+                android:clickable="false"
+                android:longClickable="false"
+                android:background="@null"
+                />
+            <ImageButton
+                android:layout_width="76dp"
+                android:layout_height="76dp"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
+                android:maxHeight="200px"
+                android:id="@+id/filter8"
+                android:src="@drawable/emboss"
+                android:onClick="aplicaFiltreBlackWhite"
+                android:clickable="false"
+                android:longClickable="false"
+                android:background="@null"
+                />
+            <ImageButton
+                android:layout_width="76dp"
+                android:layout_height="76dp"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
+                android:maxHeight="200px"
+                android:id="@+id/filter9"
+                android:src="@drawable/findedg"
+                android:onClick="aplicaSepia"
+                android:clickable="false"
+                android:longClickable="false"
+                android:background="@null"
+                />
+            <ImageButton
+                android:layout_width="76dp"
+                android:layout_height="76dp"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
+                android:maxHeight="200px"
+                android:id="@+id/filter10"
+                android:src="@drawable/blur"
+                android:onClick="aplicaCalidDivertit"
+                android:clickable="false"
+                android:longClickable="false"
+                android:background="@null"
+                />
+            <ImageButton
+                android:layout_width="76dp"
+                android:layout_height="76dp"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
+                android:maxHeight="200px"
+                android:id="@+id/filter11"
+                android:src="@drawable/edgdet"
+                android:onClick="aplicaCalid"
+                android:clickable="false"
+                android:longClickable="false"
+                android:background="@null"
+                />
+
+            <ImageButton
+                android:layout_width="76dp"
+                android:layout_height="76dp"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
+                android:maxHeight="200px"
+                android:id="@+id/filter12"
+                android:src="@drawable/edgdet"
+                android:onClick="aplicaFred"
+                android:clickable="false"
+                android:longClickable="false"
+                android:background="@null"
+                />
+            <ImageButton
+                android:layout_width="76dp"
+                android:layout_height="76dp"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
+                android:maxHeight="200px"
+                android:id="@+id/filter13"
+                android:src="@drawable/edgdet"
+                android:onClick="aplicaDivertit"
+                android:clickable="false"
+                android:longClickable="false"
+                android:background="@null"
+                />
+            <ImageButton
+                android:layout_width="76dp"
+                android:layout_height="76dp"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
+                android:maxHeight="200px"
+                android:id="@+id/filter14"
+                android:src="@drawable/edgdet"
+                android:onClick="aplicaNegatiu"
+                android:clickable="false"
+                android:longClickable="false"
+                android:background="@null"
+                />
+
 
         </LinearLayout>
     </HorizontalScrollView>

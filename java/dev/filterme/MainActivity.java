@@ -2,6 +2,7 @@ package dev.filterme;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Environment;
@@ -30,6 +31,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         /* Change title's font type */
         /* TextView title = (TextView) findViewById(R.id.title);
         Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/LaurenScript.otf");
@@ -75,8 +77,9 @@ public class MainActivity extends Activity {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES);
+        //File storageDir = Environment.getExternalStoragePublicDirectory(
+                //Environment.DIRECTORY_PICTURES);
+        File storageDir = Environment.getExternalStorageDirectory(); //Root
         File image = File.createTempFile(
                 imageFileName,  /* prefix */
                 ".jpg",         /* suffix */

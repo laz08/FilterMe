@@ -30,21 +30,20 @@ public abstract class Millora extends Filtre {
 
         matFoto = new int[h*w];
         matFotoResultat = new int[h*w];
-        //Carreguem matriu de la foto (matFoto). Intent de ser més eficient
+        //Carreguem matriu de la foto (matFoto). Més eficient que fer un set i get Pixel cada cop
         imatge.getPixels(matFoto, 0, w, 0, 0, w, h);
 
         //Apliquem el filtre
         //Respecte tota la imatge
-        for(int i = 0; i < h-2; ++i){
+        for(int i = 1; i < h; ++i){
             int acces = i*w;
-            for(int j = 0; j < w-2; ++j){
-
+            for(int j = 1; j < w; ++j){
                 R = G = B = 0.0;
-                //multiply every value of the filter with corresponding image pixel
+                //multipliquem cada valor del filtre amb el pixel que li correspon
                 //Size is the size of the filter matrix
-                for(int x = 0; x < SIZE; x++) {
-                    int acces2 = (i+x)*w;
-                    for (int y = 0; y < SIZE; y++) {
+                for(int x = 0; x < SIZE && ((i+x) <= h); x++) {
+                    int acces2 = (i-1+x)*w;
+                    for (int y = 0; y < SIZE && (acces2+j+y-1 < matFoto.length-1); y++) {
                         /**
                          * Accés a vector com si fos una kernel:
                          * i*amplada_matriu + j
@@ -52,11 +51,10 @@ public abstract class Millora extends Filtre {
                          * (i+x)*w + (j+y)
                          */
 
-                        int pixel_tmp = matFoto[acces2 + j + y];
+                        int pixel_tmp = matFoto[acces2 + j + y - 1];
                         //Apliquem filtre per valor de la kernel corresponent
 
                         double val = kernel[x][y];
-                        //red += image[imageX][imageY].r * filter[filterX][filterY];
                         R = R + Color.red(pixel_tmp) * val;
                         G = G + Color.green(pixel_tmp) * val;
                         B = B + Color.blue(pixel_tmp) * val;
@@ -78,17 +76,8 @@ public abstract class Millora extends Filtre {
                 if (b < 0) b = 0;
                 else if (b > 255) b = 255;
 
-
-
-                // Antic
-                //result.setPixel(i, j, Color.argb(255, r, g, b));
                 int col = Color.argb(255, r, g, b);
-                matFotoResultat[acces + j +1] = col;
-
-                /*
-                if()
-                    System.out.println("Pixel x: " + i + "\n Pixel y: " + j);
-                    */
+                matFotoResultat[acces + j] = col;
             }
         }
 

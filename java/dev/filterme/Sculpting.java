@@ -2,19 +2,19 @@ package dev.filterme;
 
 import android.graphics.Bitmap;
 
-public class Sharpen extends Millora {
+public class Sculpting extends Millora {
 
     protected int[][] Matrix = new int[][] {
-            { 0, -2, 0},
-            { -2, 11, -2 },
-            { 0, -2, 0 }
+            { -2, -1, 0},
+            { -1, 1, 1},
+            { 0, 1, 2}
     };
 
 
-    public Sharpen(Bitmap img){
+    public Sculpting(Bitmap img){
         super(img);
         kernel = Matrix;
-        div = 3;
+        div = 1;
         offset = 0;
     }
 

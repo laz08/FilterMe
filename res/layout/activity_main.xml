@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/helpButton"
-        android:src="@drawable/info_04"
+        android:src="@drawable/info_02"
         android:onClick="goToAbout"
         android:clickable="false"
         android:background="@null"

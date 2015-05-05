@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 
 public class EdgeDetection extends Millora {
 
-    protected int[][] blurMatrix = new int[][] {
+    protected int[][] Matrix = new int[][] {
             { 1, 1, 1},
             { 0, 0, 0 },
             { -1, -1, -1 }
@@ -13,7 +13,7 @@ public class EdgeDetection extends Millora {
 
     public EdgeDetection(Bitmap img){
         super(img);
-        kernel = blurMatrix;
+        kernel = Matrix;
         div = 1;
         offset = 127;
     }
