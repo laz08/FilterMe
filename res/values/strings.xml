@@ -51,7 +51,7 @@
     <!-- ### DIALOG INFO - Back ### -->
     <string name="dialog_title_b">Dismiss</string>
     <string name="dialog_message_b">Do you really want to go back? All changes made to the picture will be dismissed.</string>
-    <string name="dialog_confirm_b">Sure!</string>
-    <string name="dialog_reject_b">Better not</string>
+    <string name="dialog_confirm_b">Yes!</string>
+    <string name="dialog_reject_b">No.</string>
 
 </resources>

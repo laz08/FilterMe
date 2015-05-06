@@ -27,9 +27,10 @@ import java.util.Date;
 
 public class EditaFoto extends ActionBarActivity {
     private static int REQUEST_DIALOG = 1;
-    private Bitmap bmp;
-    private Bitmap r;
+    private Bitmap bmp; //Bmp inicial
+    private Bitmap bmpF; //Bmp amb filtre
     private Filtre f;
+    private boolean modified;
     private ArrayList<Bitmap> accum;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class EditaFoto extends ActionBarActivity {
         String foto = i.getStringExtra("foto");
 
         accum = new ArrayList<>();
+        modified = false;
         //FOTO
         carregaFoto(foto);
     }
@@ -51,7 +53,7 @@ public class EditaFoto extends ActionBarActivity {
     private void carregaFoto(String foto){
         final ImageView show = (ImageView) findViewById(R.id.foto);
         bmp = decodeSampledBitmapFromFile(foto, 300, 300);
-        r = bmp; //Si no hem aplicat cap filtre, s'ha de veure igualment la imatge
+        bmpF = bmp; //Si no hem aplicat cap filtre, s'ha de veure igualment la imatge
         show.setImageBitmap(bmp);
 
         show.setOnTouchListener(new View.OnTouchListener() {
@@ -62,7 +64,7 @@ public class EditaFoto extends ActionBarActivity {
                     show.setImageBitmap(bmp);
                 }
                 if (event.getAction() == MotionEvent.ACTION_UP) {
-                    show.setImageBitmap(r);
+                    show.setImageBitmap(bmpF);
                 }
                 return true;
             }
@@ -112,14 +114,14 @@ public class EditaFoto extends ActionBarActivity {
 
     private void mostraFoto(){
         ImageView show = (ImageView) findViewById(R.id.foto);
-        show.setImageBitmap(r);
+        show.setImageBitmap(bmpF);
     }
 
     // #### ---- FILTRES ---- #### //
 
     public void aplicaFiltreBlur(View view){
         f = new Blur(bmp);
-        r = f.aplicaFiltre();
+        bmpF = f.aplicaFiltre();
         mostraFoto();
     }
 
@@ -127,75 +129,75 @@ public class EditaFoto extends ActionBarActivity {
     /*
     public void aplicaFiltreMotionBlur(View view){
         MotionBlur m = new MotionBlur(bmp);
-        r = m.aplicaFiltre();
+        bmpF = m.aplicaFiltre();
         ImageView show = (ImageView) findViewById(R.id.foto);
-        show.setImageBitmap(r);
+        show.setImageBitmap(bmpF);
     }
     */
     public void aplicaGrayScale(View view){
         f = new Grayscale(bmp);
-        r = f.aplicaFiltre();
+        bmpF = f.aplicaFiltre();
         mostraFoto();
     }
 
     public void aplicaFiltreSharpen(View view){
         f = new Sharpen(bmp);
-        r = f.aplicaFiltre();
+        bmpF = f.aplicaFiltre();
         mostraFoto();
     }
     public void aplicaFiltreEmboss(View view){
         f = new Emboss(bmp);
-        r = f.aplicaFiltre();
+        bmpF = f.aplicaFiltre();
         mostraFoto();
     }
     public void aplicaFiltreEdgeDetection(View view){
         f = new EdgeDetection(bmp);
-        r = f.aplicaFiltre();
+        bmpF = f.aplicaFiltre();
         mostraFoto();
     }
     public void aplicaFiltreFindEdges(View view){
         f = new FindEdges(bmp);
-        r = f.aplicaFiltre();
+        bmpF = f.aplicaFiltre();
         mostraFoto();
     }
     public void aplicaFiltreEdges(View view){
         f = new Sculpting(bmp);
-        r = f.aplicaFiltre();
+        bmpF = f.aplicaFiltre();
         mostraFoto();
     }
     public void aplicaFiltreBlackWhite(View view){
         f = new BlackWhite(bmp);
-        r = f.aplicaFiltre();
+        bmpF = f.aplicaFiltre();
         mostraFoto();
     }
     public void aplicaSepia(View view){
         f = new Sepia(bmp);
-        r = f.aplicaFiltre();
+        bmpF = f.aplicaFiltre();
         mostraFoto();
     }
     public void aplicaCalidDivertit(View view){
         f = new CalidDivertit(bmp);
-        r = f.aplicaFiltre();
+        bmpF = f.aplicaFiltre();
         mostraFoto();
     }
     public void aplicaCalid(View view){
         f = new Calid(bmp);
-        r = f.aplicaFiltre();
+        bmpF = f.aplicaFiltre();
         mostraFoto();
     }
     public void aplicaFred(View view){
         f = new Fred(bmp);
-        r = f.aplicaFiltre();
+        bmpF = f.aplicaFiltre();
         mostraFoto();
     }
     public void aplicaDivertit(View view){
         f = new Divertit(bmp);
-        r = f.aplicaFiltre();
+        bmpF = f.aplicaFiltre();
         mostraFoto();
     }
     public void aplicaNegatiu(View view){
         f = new Negative(bmp);
-        r = f.aplicaFiltre();
+        bmpF = f.aplicaFiltre();
         mostraFoto();
     }
 
@@ -213,7 +215,7 @@ public class EditaFoto extends ActionBarActivity {
             }
             File image = new File(dir, File.separator + imageFileName + ".jpg");
             FileOutputStream fo = new FileOutputStream(image);
-            r.compress(Bitmap.CompressFormat.JPEG, 100, fo);
+            bmpF.compress(Bitmap.CompressFormat.JPEG, 100, fo);
             fo.flush();
             fo.close();
             //System.out.println("L'arxiu està a: " + image.getAbsolutePath());
@@ -231,30 +233,29 @@ public class EditaFoto extends ActionBarActivity {
     }
 
     private void afegeixFiltreAccum(){
-        Bitmap af = r.copy(r.getConfig(), true);
+        modified = true;
+        Bitmap af = bmp.copy(bmp.getConfig(), true);
         accum.add(af);
         if(accum.size() > 3)
             accum.remove(0);
-        bmp = r;
+        bmp = bmpF;
     }
 
     private void treuFiltreAccum(){
-        if(accum.size() != 0) {
-            r = bmp;
-            //TODO No ho desfà
-            bmp = accum.get(accum.size()-1);
+        if(accum.size() != 0){
+            bmp = bmpF = accum.get(accum.size()-1);
             accum.remove(accum.size()-1);
-
-            ImageView show = (ImageView) findViewById(R.id.foto);
-            show.setImageBitmap(r);
+            mostraFoto();
         }
         else {
-            if(!bmp.equals(r)){
-                r = bmp;
-                ImageView show = (ImageView) findViewById(R.id.foto);
-                show.setImageBitmap(r);
+            if(!bmp.equals(bmpF)){
+                bmpF = bmp;
+                mostraFoto();
             }else{
-                Toast.makeText(getApplicationContext(), "You haven't applied a filter yet!", Toast.LENGTH_SHORT).show();
+                if(!modified)
+                    Toast.makeText(getApplicationContext(), "You haven't applied a filter yet!", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(getApplicationContext(), "You can't undo anymore ", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -323,7 +324,6 @@ public class EditaFoto extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //TODO Opció "Guardar" i "Aplicar". En donar-li a "Aplicar", apliquem el filtre a la foto. Podem desfer un sol cop.
         // Inflate the menu; this adds items to the action bar if it is present.
         //getMenuInflater().inflate(R.menu.menu_edita_foto, menu);
         getMenuInflater().inflate(R.menu.menu_edita_foto, menu);
