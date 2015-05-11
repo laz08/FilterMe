@@ -2,6 +2,8 @@ package dev.filterme;
 
 import java.util.Locale;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -16,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -84,22 +87,6 @@ public class About extends ActionBarActivity implements ActionBar.TabListener {
         return true;
     }
 
-    /*
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-    */
 
     @Override
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
@@ -184,17 +171,23 @@ public class About extends ActionBarActivity implements ActionBar.TabListener {
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_about, container, false);
             TextView display = (TextView) rootView.findViewById(R.id.info);
+            TextView display2 = (TextView) rootView.findViewById(R.id.info2);
+            TextView display3 = (TextView) rootView.findViewById(R.id.info3);
+            ImageView img = (ImageView) rootView.findViewById(R.id.imgAbout);
             int position = getArguments().getInt(ARG_SECTION_NUMBER);
             switch (position){
                 case 1:
-                    display.setText(String.format(getString(R.string.application)));
+                    img.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.app_icon));
+                    display.setText(String.format(getString(R.string.app_name)));
+                    display2.setText(String.format(getString(R.string.application)));
                     break;
                 case 2:
                     display.setText(getText(R.string.author) + "\n" + getText(R.string.contact_me));
+                    display2.setText(String.format(getString(R.string.author_mail)));
                     //display.setText(String.format(getString(R.string.author)) + "\n" + getString(R.string.contact_me));
                     break;
                 case 3:
-                    display.setText(String.format(getString(R.string.license)));
+                    display.setText(String.format("Help."));
                     break;
                 default:
                     display.setText("Bug xuli");

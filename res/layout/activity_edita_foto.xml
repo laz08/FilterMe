@@ -22,11 +22,318 @@
         android:maxHeight="600px"
         android:layout_weight="11" />
 
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="200px"
+            android:gravity="center_horizontal"
+            android:minHeight="200px"
+            android:layout_marginBottom="0px"
+            android:isScrollContainer="true"
+            android:id="@+id/lmenu"
+            android:weightSum="4"
+            android:layout_gravity="bottom"
+            >
+            <LinearLayout
+                android:id="@+id/item1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:layout_weight="2"
+                android:orientation="vertical">
+                <ImageButton
+                    android:layout_width="76dp"
+                    android:layout_height="76dp"
+                    android:layout_gravity="center"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerInside"
+                    android:maxHeight="200px"
+                    android:id="@+id/botoMill"
+                    android:src="@drawable/edgdet"
+                    android:onClick="mostraMill"
+                    android:clickable="false"
+                    android:longClickable="false"
+                    android:text="Millora"
+                    android:background="@null"
+                    />
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:lines="1"
+                    android:gravity="center"
+                    android:text="Millora"
+                    android:textColor="@color/white"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/item2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:layout_weight="2"
+                android:orientation="vertical">
+                <ImageButton
+                    android:layout_width="76dp"
+                    android:layout_height="76dp"
+                    android:layout_gravity="center"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerInside"
+                    android:maxHeight="200px"
+                    android:id="@+id/botoArt"
+                    android:src="@drawable/edgdet"
+                    android:onClick="mostraArt"
+                    android:clickable="false"
+                    android:longClickable="false"
+                    android:background="@null"
+                    />
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:lines="1"
+                    android:gravity="center"
+                    android:text="Artístic"
+                    android:textColor="@color/white"/>
+            </LinearLayout>
+        </LinearLayout>
 
+    <!-- MILLORA -->
     <HorizontalScrollView
         android:layout_width="wrap_content"
         android:layout_height="200px"
         android:layout_marginBottom="0px"
+        android:id="@+id/filtresMill"
+        >
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="200px"
+            android:layout_gravity="left"
+            android:gravity="bottom"
+            android:minHeight="200px"
+            android:minWidth="720px"
+            android:layout_marginBottom="0px"
+            android:isScrollContainer="true"
+            android:id="@+id/layMill"
+            >
+            <LinearLayout
+                android:id="@+id/layback"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:layout_weight="2"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:layout_width="76dp"
+                    android:layout_height="76dp"
+                    android:layout_gravity="center"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerInside"
+                    android:maxHeight="200px"
+                    android:id="@+id/backMill"
+                    android:src="@drawable/undo_fi"
+                    android:onClick="mostraMenuInf"
+                    android:clickable="false"
+                    android:longClickable="false"
+                    android:background="@null"
+                    />
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:lines="1"
+                    android:gravity="center"
+                    android:text="Back"
+                    android:textColor="@color/white"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/layblur"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:layout_weight="2"
+                android:orientation="vertical">
+                <ImageButton
+                    android:layout_width="76dp"
+                    android:layout_height="76dp"
+                    android:layout_gravity="center"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerInside"
+                    android:maxHeight="200px"
+                    android:id="@+id/filter1"
+                    android:src="@drawable/blur"
+                    android:onClick="aplicaFiltreBlur"
+                    android:clickable="false"
+                    android:longClickable="false"
+                    android:background="@null"
+                    />
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:lines="1"
+                    android:gravity="center"
+                    android:text="Blur"
+                    android:textColor="@color/white"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/laysharp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:layout_weight="2"
+                android:orientation="vertical">
+                <ImageButton
+                    android:layout_width="76dp"
+                    android:layout_height="76dp"
+                    android:layout_gravity="center"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerInside"
+                    android:maxHeight="200px"
+                    android:id="@+id/filter2"
+                    android:src="@drawable/sharp"
+                    android:onClick="aplicaFiltreSharpen"
+                    android:clickable="false"
+                    android:longClickable="false"
+                    android:background="@null" />
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:lines="1"
+                    android:gravity="center"
+                    android:text="Sharpen"
+                    android:textColor="@color/white"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/layemboss"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:layout_weight="2"
+                android:orientation="vertical">
+                <ImageButton
+                    android:layout_width="76dp"
+                    android:layout_height="76dp"
+                    android:layout_gravity="center"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerInside"
+                    android:maxHeight="200px"
+                    android:id="@+id/filter3"
+                    android:src="@drawable/findedg"
+                    android:onClick="aplicaFiltreEmboss"
+                    android:clickable="false"
+                    android:longClickable="false"
+                    android:background="@null"
+                    />
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:lines="1"
+                    android:gravity="center"
+                    android:text="Emboss"
+                    android:textColor="@color/white"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/edgdet"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:layout_weight="2"
+                android:orientation="vertical">
+                <ImageButton
+                    android:layout_width="76dp"
+                    android:layout_height="76dp"
+                    android:layout_gravity="center"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerInside"
+                    android:maxHeight="200px"
+                    android:id="@+id/filter4"
+                    android:src="@drawable/emboss"
+                    android:onClick="aplicaFiltreEdgeDetection"
+                    android:clickable="false"
+                    android:longClickable="false"
+                    android:background="@null"
+                    />
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:lines="1"
+                    android:gravity="center"
+                    android:text="Edge detection"
+                    android:textColor="@color/white"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/layfindedg"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:layout_weight="2"
+                android:orientation="vertical">
+                <ImageButton
+                    android:layout_width="76dp"
+                    android:layout_height="76dp"
+                    android:layout_gravity="center"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerInside"
+                    android:maxHeight="200px"
+                    android:id="@+id/filter6"
+                    android:src="@drawable/edgdet"
+                    android:onClick="aplicaFiltreFindEdges"
+                    android:clickable="false"
+                    android:longClickable="false"
+                    android:background="@null"
+                    />
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:lines="1"
+                    android:gravity="center"
+                    android:text="Find edges"
+                    android:textColor="@color/white"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/laysculpt"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:layout_weight="2"
+                android:orientation="vertical">
+                <ImageButton
+                    android:layout_width="76dp"
+                    android:layout_height="76dp"
+                    android:layout_gravity="center"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerInside"
+                    android:maxHeight="200px"
+                    android:id="@+id/filter7"
+                    android:src="@drawable/sculpt"
+                    android:onClick="aplicaFiltreEdges"
+                    android:clickable="false"
+                    android:longClickable="false"
+                    android:background="@null"/>
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:lines="1"
+                    android:gravity="center"
+                    android:text="Edges"
+                    android:textColor="@color/white"/>
+            </LinearLayout>
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <!-- Artístic -->
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="200px"
+        android:layout_marginBottom="0px"
+        android:id="@+id/filtresArt"
         >
         <LinearLayout
             android:orientation="horizontal"
@@ -37,11 +344,16 @@
             android:minWidth="720px"
             android:layout_marginBottom="0px"
             android:isScrollContainer="true"
-
+            android:id="@+id/layArt"
+            android:gravity="bottom"
             >
-
-
-
+        <LinearLayout
+            android:id="@+id/laybackart"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:layout_weight="2"
+            android:orientation="vertical">
             <ImageButton
                 android:layout_width="76dp"
                 android:layout_height="76dp"
@@ -49,83 +361,29 @@
                 android:adjustViewBounds="true"
                 android:scaleType="centerInside"
                 android:maxHeight="200px"
-                android:id="@+id/filter1"
-                android:src="@drawable/blur"
-                android:onClick="aplicaFiltreBlur"
+                android:id="@+id/backArt"
+                android:src="@drawable/undo_fi"
+                android:onClick="mostraMenuInf"
                 android:clickable="false"
                 android:longClickable="false"
                 android:background="@null"
                 />
-
-            <ImageButton
-                android:layout_width="76dp"
-                android:layout_height="76dp"
-                android:layout_gravity="center"
-                android:adjustViewBounds="true"
-                android:scaleType="centerInside"
-                android:maxHeight="200px"
-                android:id="@+id/filter2"
-                android:src="@drawable/sharp"
-                android:onClick="aplicaFiltreSharpen"
-                android:clickable="false"
-                android:longClickable="false"
-                android:background="@null" />
-            <ImageButton
-                android:layout_width="76dp"
-                android:layout_height="76dp"
-                android:layout_gravity="center"
-                android:adjustViewBounds="true"
-                android:scaleType="centerInside"
-                android:maxHeight="200px"
-                android:id="@+id/filter3"
-                android:src="@drawable/findedg"
-                android:onClick="aplicaFiltreEmboss"
-                android:clickable="false"
-                android:longClickable="false"
-                android:background="@null"
-                />
-            <ImageButton
-                android:layout_width="76dp"
-                android:layout_height="76dp"
-                android:layout_gravity="center"
-                android:adjustViewBounds="true"
-                android:scaleType="centerInside"
-                android:maxHeight="200px"
-                android:id="@+id/filter4"
-                android:src="@drawable/emboss"
-                android:onClick="aplicaFiltreEdgeDetection"
-                android:clickable="false"
-                android:longClickable="false"
-                android:background="@null"
-                />
-
-            <ImageButton
-                android:layout_width="76dp"
-                android:layout_height="76dp"
-                android:layout_gravity="center"
-                android:adjustViewBounds="true"
-                android:scaleType="centerInside"
-                android:maxHeight="200px"
-                android:id="@+id/filter6"
-                android:src="@drawable/edgdet"
-                android:onClick="aplicaFiltreFindEdges"
-                android:clickable="false"
-                android:longClickable="false"
-                android:background="@null"
-                />
-            <ImageButton
-                android:layout_width="76dp"
-                android:layout_height="76dp"
-                android:layout_gravity="center"
-                android:adjustViewBounds="true"
-                android:scaleType="centerInside"
-                android:maxHeight="200px"
-                android:id="@+id/filter7"
-                android:src="@drawable/sculpt"
-                android:onClick="aplicaFiltreEdges"
-                android:clickable="false"
-                android:longClickable="false"
-                android:background="@null"/>
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:lines="1"
+                android:gravity="center"
+                android:text="Back"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/laygrayscale"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:layout_weight="2"
+            android:orientation="vertical">
             <ImageButton
                 android:layout_width="76dp"
                 android:layout_height="76dp"
@@ -140,6 +398,22 @@
                 android:longClickable="false"
                 android:background="@null"
                 />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:lines="1"
+                android:gravity="center"
+                android:text="Grayscale"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/layblackwhite"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:layout_weight="2"
+            android:orientation="vertical">
             <ImageButton
                 android:layout_width="76dp"
                 android:layout_height="76dp"
@@ -154,6 +428,22 @@
                 android:longClickable="false"
                 android:background="@null"
                 />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:lines="1"
+                android:gravity="center"
+                android:text="Black and white"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/laysepia"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:layout_weight="2"
+            android:orientation="vertical">
             <ImageButton
                 android:layout_width="76dp"
                 android:layout_height="76dp"
@@ -168,6 +458,22 @@
                 android:longClickable="false"
                 android:background="@null"
                 />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:lines="1"
+                android:gravity="center"
+                android:text="Sepia"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/layCalidDiv"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:layout_weight="2"
+            android:orientation="vertical">
             <ImageButton
                 android:layout_width="76dp"
                 android:layout_height="76dp"
@@ -182,6 +488,22 @@
                 android:longClickable="false"
                 android:background="@null"
                 />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:lines="1"
+                android:gravity="center"
+                android:text="Calid divertit"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/laycalid"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:layout_weight="2"
+            android:orientation="vertical">
             <ImageButton
                 android:layout_width="76dp"
                 android:layout_height="76dp"
@@ -196,7 +518,22 @@
                 android:longClickable="false"
                 android:background="@null"
                 />
-
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:lines="1"
+                android:gravity="center"
+                android:text="Càlid"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/layfred"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:layout_weight="2"
+            android:orientation="vertical">
             <ImageButton
                 android:layout_width="76dp"
                 android:layout_height="76dp"
@@ -211,6 +548,22 @@
                 android:longClickable="false"
                 android:background="@null"
                 />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:lines="1"
+                android:gravity="center"
+                android:text="Fred"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/laydiver"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:layout_weight="2"
+            android:orientation="vertical">
             <ImageButton
                 android:layout_width="76dp"
                 android:layout_height="76dp"
@@ -225,6 +578,22 @@
                 android:longClickable="false"
                 android:background="@null"
                 />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:lines="1"
+                android:gravity="center"
+                android:text="Funny"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/layNegatiu"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:layout_weight="2"
+            android:orientation="vertical">
             <ImageButton
                 android:layout_width="76dp"
                 android:layout_height="76dp"
@@ -239,9 +608,17 @@
                 android:longClickable="false"
                 android:background="@null"
                 />
-
-
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:lines="1"
+                android:gravity="center"
+                android:text="Negative"
+                android:textColor="@color/white"/>
+        </LinearLayout>
         </LinearLayout>
     </HorizontalScrollView>
+
 
 </LinearLayout>

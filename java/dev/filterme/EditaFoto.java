@@ -14,8 +14,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.LayoutAnimationController;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.io.File;
@@ -32,6 +39,7 @@ public class EditaFoto extends ActionBarActivity {
     private Filtre f;
     private boolean modified;
     private ArrayList<Bitmap> accum;
+    LayoutAnimationController controller;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,8 +55,57 @@ public class EditaFoto extends ActionBarActivity {
         modified = false;
         //FOTO
         carregaFoto(foto);
+        preparaController();
+        preparaMenuInferior();
     }
 
+    private void preparaController(){
+        // ANIMACiONS FOTO A FOTO
+        AnimationSet setAn = new AnimationSet(true);
+        Animation anim = new AlphaAnimation(0.0f, 1.0f); //De invisible a visible
+        anim.setDuration(300);
+        setAn.addAnimation(anim);
+        anim = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 0.0f,
+                Animation.RELATIVE_TO_SELF, 1.0f, Animation.RELATIVE_TO_SELF, 0.0f);
+        anim.setDuration(100);
+        setAn.addAnimation(anim);
+        controller = new LayoutAnimationController(setAn, 0.25f);
+    }
+
+    private void preparaMenuInferior(){
+        LinearLayout menuInf = (LinearLayout) findViewById(R.id.lmenu);
+        menuInf.setLayoutAnimation(controller);
+        menuInf.setVisibility(HorizontalScrollView.VISIBLE);
+        menuInf = (LinearLayout) findViewById(R.id.layMill);
+        menuInf.setVisibility(HorizontalScrollView.GONE);
+        HorizontalScrollView menuInf2 = (HorizontalScrollView) findViewById(R.id.filtresMill);
+        menuInf2.setVisibility(HorizontalScrollView.GONE);
+        menuInf = (LinearLayout) findViewById(R.id.layArt);
+        menuInf.setVisibility(HorizontalScrollView.GONE);
+        menuInf2 = (HorizontalScrollView) findViewById(R.id.filtresArt);
+        menuInf2.setVisibility(HorizontalScrollView.GONE);
+    }
+    public void mostraMenuInf(View view){
+        preparaMenuInferior();
+    }
+    public void mostraArt(View view){
+        LinearLayout menuInf = (LinearLayout) findViewById(R.id.lmenu);
+        menuInf.setVisibility(HorizontalScrollView.GONE);
+        HorizontalScrollView menuInf2 = (HorizontalScrollView) findViewById(R.id.filtresArt);
+        menuInf2.setVisibility(HorizontalScrollView.VISIBLE);
+        menuInf = (LinearLayout) findViewById(R.id.layArt);
+        menuInf.setLayoutAnimation(controller);
+        menuInf.setVisibility(HorizontalScrollView.VISIBLE);
+    }
+    public void mostraMill(View view){
+        LinearLayout menuInf = (LinearLayout) findViewById(R.id.lmenu);
+        menuInf.setVisibility(HorizontalScrollView.GONE);
+        HorizontalScrollView menuInf2 = (HorizontalScrollView) findViewById(R.id.filtresMill);
+        menuInf2.setVisibility(HorizontalScrollView.VISIBLE);
+        menuInf = (LinearLayout) findViewById(R.id.layMill);
+        menuInf.setLayoutAnimation(controller);
+        menuInf.setVisibility(HorizontalScrollView.VISIBLE);
+    }
 
     private void carregaFoto(String foto){
         final ImageView show = (ImageView) findViewById(R.id.foto);
@@ -362,6 +419,7 @@ public class EditaFoto extends ActionBarActivity {
     @Override
     public void onBackPressed() {
         showBackDialog();
+
     }
 
 }
