@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Environment;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -20,6 +21,7 @@ import android.view.animation.AnimationSet;
 import android.view.animation.LayoutAnimationController;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -259,7 +261,7 @@ public class EditaFoto extends ActionBarActivity {
     }
 
     // ### ---- FILTRES (fi) ---- #### //
-    private void guardaImatge() {
+    private void guardaImatgeDefinit() {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
@@ -289,6 +291,57 @@ public class EditaFoto extends ActionBarActivity {
 
     }
 
+    private void guarda(String name){
+        File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "FilterMe");
+        try {
+            if(!dir.exists()){
+                System.out.println(dir.mkdirs());
+            }
+            File image = new File(dir, File.separator + name + ".jpg");
+            FileOutputStream fo = new FileOutputStream(image);
+            bmpF.compress(Bitmap.CompressFormat.JPEG, 100, fo);
+            fo.flush();
+            fo.close();
+            //System.out.println("L'arxiu està a: " + image.getAbsolutePath());
+
+            //Per a que la galeria ho trobi
+            Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+            Uri contentUri = Uri.fromFile(image);
+            mediaScanIntent.setData(contentUri);
+            this.sendBroadcast(mediaScanIntent);
+        }
+        catch (Exception e){
+            //Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
+    private void guardaImatge() {
+        File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "FilterMe");
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+
+        alert.setTitle("Save");
+        alert.setMessage("Choose a name for your picture!");
+
+        final EditText input = new EditText(this);
+        alert.setView(input);
+
+        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                String value = input.getText().toString();
+                if(value.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "You have to enter a name!", Toast.LENGTH_SHORT).show();
+                }
+                else guarda(value);
+            }
+        });
+
+        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                //No faig res!
+            }
+        });
+        alert.show();
+    }
+
     private void afegeixFiltreAccum(){
         modified = true;
         Bitmap af = bmp.copy(bmp.getConfig(), true);
@@ -312,41 +365,9 @@ public class EditaFoto extends ActionBarActivity {
                 if(!modified)
                     Toast.makeText(getApplicationContext(), "You haven't applied a filter yet!", Toast.LENGTH_SHORT).show();
                 else
-                    Toast.makeText(getApplicationContext(), "You can't undo anymore ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "You can't undo any more filters.", Toast.LENGTH_SHORT).show();
             }
         }
-    }
-
-    private void showSaveDialog(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-        builder.setTitle(R.string.dialog_title);
-        builder.setMessage(R.string.dialog_message);
-        builder.setPositiveButton(R.string.dialog_confirm, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                guardaImatge();
-                dialog.dismiss();
-                Toast.makeText(getApplicationContext(), R.string.dialog_saved_true, Toast.LENGTH_LONG).show();
-            }
-
-        });
-
-        builder.setNegativeButton(R.string.dialog_reject, new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // Do nothing
-                dialog.dismiss();
-            }
-        });
-
-        AlertDialog alert = builder.create();
-        alert.show();
-        Button reject = alert.getButton(DialogInterface.BUTTON_NEGATIVE);
-        reject.setTextColor(getResources().getColor(R.color.maroon));
-/*
-        Button accept = alert.getButton(DialogInterface.BUTTON_POSITIVE);
-        accept.setTextColor(Color.GREEN);*/
     }
 
 
@@ -400,7 +421,7 @@ public class EditaFoto extends ActionBarActivity {
         }*/
 
         if(id == R.id.action_save){
-            showSaveDialog();
+            guardaImatge();
         }
         if(id == R.id.action_apply){
             afegeixFiltreAccum();

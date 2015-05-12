@@ -3,10 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="dev.filterme.About$PlaceholderFragment"
     >
 
@@ -20,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:layout_gravity="center"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:weightSum="5"
@@ -38,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:textSize="10dp"
+                android:textSize="30dp"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
             <TextView
@@ -47,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:textSize="10dp"
+                android:textSize="15dp"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
             <TextView
@@ -56,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:textSize="10dp"
+                android:textSize="15dp"
                 android:textStyle="bold"
                 android:layout_weight="1"/>
             </LinearLayout>

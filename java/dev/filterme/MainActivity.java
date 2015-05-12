@@ -32,10 +32,6 @@ public class MainActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        /* Change title's font type */
-        /* TextView title = (TextView) findViewById(R.id.title);
-        Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/LaurenScript.otf");
-        title.setTypeface(tf);*/
         }
 
     public void opGalleryAndToast(View view){
@@ -73,12 +69,15 @@ public class MainActivity extends Activity {
         startActivity(ab);
     }
 
+    public void goToHelp(View view){
+        Intent ab = new Intent(this, Help.class);
+        startActivity(ab);
+    }
+
     private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
-        //File storageDir = Environment.getExternalStoragePublicDirectory(
-                //Environment.DIRECTORY_PICTURES);
         File storageDir = Environment.getExternalStorageDirectory(); //Root
         File image = File.createTempFile(
                 imageFileName,  /* prefix */
@@ -138,7 +137,6 @@ public class MainActivity extends Activity {
         } catch (Exception e) {
 
             Toast.makeText(this, getString(R.string.pic_error_loading), Toast.LENGTH_LONG).show();
-            //Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
 }

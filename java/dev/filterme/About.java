@@ -4,6 +4,7 @@ import java.util.Locale;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -182,15 +183,18 @@ public class About extends ActionBarActivity implements ActionBar.TabListener {
                     display2.setText(String.format(getString(R.string.application)));
                     break;
                 case 2:
-                    display.setText(getText(R.string.author) + "\n" + getText(R.string.contact_me));
-                    display2.setText(String.format(getString(R.string.author_mail)));
-                    //display.setText(String.format(getString(R.string.author)) + "\n" + getString(R.string.contact_me));
+                    display.setText(getText(R.string.author));
+                    display2.setText(getText(R.string.contact_me));
+                    display.setTextSize(20);
+                    display3.setTextSize(18);
+                    display3.setText(String.format(getString(R.string.author_mail)));
+                    display3.setTextColor(getResources().getColor(R.color.blue));
                     break;
                 case 3:
-                    display.setText(String.format("Help."));
+                    display.setText("GNU General Public License v2.0");
+                    display2.setText(String.format("(This application is under de GPL License.)"));
                     break;
                 default:
-                    display.setText("Bug xuli");
                     break;
             }
             return rootView;
