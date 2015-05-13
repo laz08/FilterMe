@@ -311,15 +311,15 @@ public class EditaFoto extends ActionBarActivity {
             this.sendBroadcast(mediaScanIntent);
         }
         catch (Exception e){
-            //Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Error en guardar la foto.", Toast.LENGTH_LONG).show();
         }
     }
     private void guardaImatge() {
         File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "FilterMe");
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
-        alert.setTitle("Save");
-        alert.setMessage("Choose a name for your picture!");
+        alert.setTitle("Guardar");
+        alert.setMessage("Escull un nom per a la foto!");
 
         final EditText input = new EditText(this);
         alert.setView(input);
@@ -328,13 +328,13 @@ public class EditaFoto extends ActionBarActivity {
             public void onClick(DialogInterface dialog, int whichButton) {
                 String value = input.getText().toString();
                 if(value.isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "You have to enter a name!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "El nom no pot ser buit!", Toast.LENGTH_SHORT).show();
                 }
                 else guarda(value);
             }
         });
 
-        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        alert.setNegativeButton("Cancel·lar", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 //No faig res!
             }
@@ -342,7 +342,7 @@ public class EditaFoto extends ActionBarActivity {
         alert.show();
     }
 
-    private void afegeixFiltreAccum(){
+    public void afegeixFiltreAccum(){
         modified = true;
         Bitmap af = bmp.copy(bmp.getConfig(), true);
         accum.add(af);
@@ -351,7 +351,7 @@ public class EditaFoto extends ActionBarActivity {
         bmp = bmpF;
     }
 
-    private void treuFiltreAccum(){
+    public void treuFiltreAccum(){
         if(accum.size() != 0){
             bmp = bmpF = accum.get(accum.size()-1);
             accum.remove(accum.size()-1);
@@ -363,9 +363,9 @@ public class EditaFoto extends ActionBarActivity {
                 mostraFoto();
             }else{
                 if(!modified)
-                    Toast.makeText(getApplicationContext(), "You haven't applied a filter yet!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Encara no has aplicat cap filtre!", Toast.LENGTH_SHORT).show();
                 else
-                    Toast.makeText(getApplicationContext(), "You can't undo any more filters.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "No es poden desfer més filtres", Toast.LENGTH_SHORT).show();
             }
         }
     }

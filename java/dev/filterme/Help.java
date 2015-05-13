@@ -1,5 +1,6 @@
 package dev.filterme;
 
+import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -14,11 +15,7 @@ public class Help extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help);
-        /*
-        TextView titol = (TextView) findViewById(R.id.titol_help);
-        Typeface tf = Typeface.createFromAsset(getAssets(),
-                "funsized.ttf");
-        titol.setTypeface(tf);*/
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
 
